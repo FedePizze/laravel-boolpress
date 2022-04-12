@@ -1,17 +1,15 @@
 <template>
     <div>
-        <router-view></router-view>
+        <h1>COME CONTATTARCI</h1>
+        <h3>Qui ci contatti</h3>
     </div>
 </template>
 
-
 <script>
 export default {
-    name: 'Main',
-
+    name: 'Contact'
 }
 </script>
-
 
 <style scoped>
 

@@ -1,13 +1,13 @@
 <template>
     <div>
-        <router-view></router-view>
+        <h5>FOOTER DELLA PAGINA</h5>
     </div>
 </template>
 
 
 <script>
 export default {
-    name: 'Main',
+    name: 'Footer',
 
 }
 </script>

@@ -1,17 +1,12 @@
 <template>
-    <div>
-        <router-view></router-view>
-    </div>
+    <div>{{$route.params.slug}}</div>
 </template>
-
 
 <script>
 export default {
-    name: 'Main',
-
+    name: 'SinglePost'
 }
 </script>
-
 
 <style scoped>
 

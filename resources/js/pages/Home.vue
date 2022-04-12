@@ -1,17 +1,14 @@
 <template>
     <div>
-        <router-view></router-view>
+        <h1>BENVENUTI</h1>
     </div>
 </template>
 
-
 <script>
 export default {
-    name: 'Main',
-
+    name: 'Home'
 }
 </script>
-
 
 <style scoped>
 
