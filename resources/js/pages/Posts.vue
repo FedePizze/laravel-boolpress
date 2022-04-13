@@ -54,6 +54,7 @@ export default {
 
             .then((response) => {
 
+                //console.log(response);
                 this.currentPage = response.data.results.current_page;
                 this.posts = response.data.results.data;
                 this.lastPage = response.data.results.last_page;
@@ -61,7 +62,7 @@ export default {
 
             });
 
-            console.log(this.posts)
+
         },
     },
 

@@ -1,21 +1,12 @@
 <template>
     <div>
         <nav class="navbar navbar-expand navbar-light bg-light">
-            <a class="navbar-brand" href="#">LGOG</a>
+            <a class="navbar-brand" href="#">LOGO</a>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" :to="{name: 'about'}">Chi Siamo</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" :to="{name: 'contact'}">Contatti</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" :to="{name: 'blog'}">Blog</router-link>
-                </li>
-            </ul>
+            <li class="nav-item" v-for="menu in menu" :key="menu.routeName">
+                <router-link class="nav-link" :to="{name: menu.routeName}">{{menu.label}}</router-link>
+            </li>
+        </ul>
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
@@ -30,6 +21,28 @@
 <script>
 export default {
     name: 'Header',
+    data() {
+        return {
+            menu: [
+                {
+                    routeName: 'home',
+                    label: 'Home'
+                },
+                {
+                    routeName: 'about',
+                    label: 'Chi Siamo'
+                },
+                {
+                    routeName: 'contact',
+                    label: 'Contatti'
+                },
+                {
+                    routeName: 'blog',
+                    label: 'Blog'
+                },
+            ]
+        }
+    }
 
 }
 </script>
