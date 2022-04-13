@@ -4,17 +4,14 @@
             <h1>Elenco delle canzoni</h1>
 
             <div class="row">
-                <div class="col-4" v-for="post in posts" :key="post.id">
-                    <div class="card">
-                        <div class="card-body">
-
-                        <h5 class="card-title">{{post.title}}</h5>
-
-                        <p class="card-text">{{post.description}}</p>
-
-                        <a href="#" class="btn btn-primary">Vedi dato completo</a>
-                        </div>
-                    </div>
+                <div class="col-6" v-for="post in posts" :key="post.id">
+                    <Post
+                        :title='post.title'
+                        :description='post.description'
+                        :slug='post.slug'
+                        :category='post.category'
+                        :tags='post.tags'
+                    />
                 </div>
             </div>
 
@@ -33,8 +30,13 @@
 
 
 <script>
+import Post from '../components/Post';
+
 export default {
     name: 'Main',
+    components: {
+        Post
+    },
 
     data() {
         return {
@@ -55,15 +57,17 @@ export default {
                 this.currentPage = response.data.results.current_page;
                 this.posts = response.data.results.data;
                 this.lastPage = response.data.results.last_page;
+
+
             });
+
+            console.log(this.posts)
         },
     },
 
 
     created() {
         this.Post();
-
-        axios.get('/api/posts').then((response) => {console.log(response)});
     }
 }
 </script>
