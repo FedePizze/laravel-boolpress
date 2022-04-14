@@ -33,7 +33,7 @@
 import Post from '../components/Post';
 
 export default {
-    name: 'Main',
+    name: 'Posts',
     components: {
         Post
     },
