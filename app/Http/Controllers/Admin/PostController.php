@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Post;
 use App\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -17,7 +18,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() //-----------------------------------------------------------------------------------------------------------------------------------------------
     {
         //dd('ciao');
 
@@ -30,7 +31,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() //-----------------------------------------------------------------------------------------------------------------------------------------------
     {
         $categories = Category::all();
         $tags = Tag::all();
@@ -44,7 +45,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //-----------------------------------------------------------------------------------------------------------------------------------------------
     {
         $request->validate(
             [
@@ -52,8 +53,14 @@ class PostController extends Controller
                 'description' => 'required|min:10',
                 'category_id' => 'nullable|exists:categories,id',
                 'tags' => 'nullable|exists:tags,id',
+                'image' => 'nullable|image|max:2048',
             ]
         );
+
+        if (isset($data['image'])) {
+            $cover_path = Storage::put('post_covers', $data['image']);
+            $data['cover'] = $cover_path;
+        }
 
         $data = $request->all();
 
@@ -84,7 +91,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post) //-----------------------------------------------------------------------------------------------------------------------------------------------
     {
         return view('admin.post.show', compact('post'));
     }
@@ -95,7 +102,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post) //-----------------------------------------------------------------------------------------------------------------------------------------------
     {
 
         $categories = Category::all();
@@ -111,7 +118,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post) //-----------------------------------------------------------------------------------------------------------------------------------------------
     {
 
         $request->validate(
@@ -120,10 +127,21 @@ class PostController extends Controller
                 'description' => 'required|min:10',
                 'category_id' => 'nullable|exists:categories,id',
                 'tags' => 'nullable|exists:tags,id',
+                'image' => 'nullable|image|max:2048',
             ]
         );
 
         $data = $request->all();
+
+        if (isset($data['image'])) {
+
+            if ($post->cover) {
+                Storage::delete($post->cover);
+            }
+
+            $cover_path = Storage::put('post_covers', $data['image']);
+            $data['cover'] = $cover_path;
+        }
 
         $slug = Str::slug($data['title']);
 
@@ -151,9 +169,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post) //-----------------------------------------------------------------------------------------------------------------------------------------------
     {
+
+        if ($post->cover) {
+            Storage::delete($post->cover);
+        }
+
         $post->delete();
         return redirect()->route('admin.posts.index');
+        
     }
 }

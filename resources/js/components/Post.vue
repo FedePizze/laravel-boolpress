@@ -2,7 +2,8 @@
     <div class="card">
         <div class="card-body">
             <h2 class="card-title">{{ title }}</h2>
-            <h4 class="card-text">{{ category?category.name:'&nbsp;'}}</h4>
+            <img class="img-fluid" :src='img' alt='title'>
+            <!-- <h4 class="card-text">{{ category?category.name:'&nbsp;'}}</h4> -->
             <p class="card-text">{{ caratteri(description) }}</p>
             <router-link class="btn btn-primary" :to="{name: 'single-post', params: {slug: slug}}">Scopri di più</router-link>
         </div>
@@ -13,7 +14,7 @@
 <script>
 export default {
     name: 'Post',
-    props: ['title', 'description', 'slug', 'category', 'tags'],
+    props: ['title', 'description', 'slug', 'category', 'tags', 'img'],
 
       data() {
         return {

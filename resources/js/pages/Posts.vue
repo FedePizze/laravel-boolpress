@@ -11,6 +11,7 @@
                         :slug='post.slug'
                         :category='post.category'
                         :tags='post.tags'
+                        :img='post.cover'
                     />
                 </div>
             </div>
