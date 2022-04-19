@@ -53,16 +53,16 @@ class PostController extends Controller
                 'description' => 'required|min:10',
                 'category_id' => 'nullable|exists:categories,id',
                 'tags' => 'nullable|exists:tags,id',
-                'image' => 'nullable|image|max:2048',
+                'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ]
         );
+
+        $data = $request->all();
 
         if (isset($data['image'])) {
             $cover_path = Storage::put('post_covers', $data['image']);
             $data['cover'] = $cover_path;
         }
-
-        $data = $request->all();
 
         $slug = Str::slug($data['title']);
 
@@ -127,7 +127,7 @@ class PostController extends Controller
                 'description' => 'required|min:10',
                 'category_id' => 'nullable|exists:categories,id',
                 'tags' => 'nullable|exists:tags,id',
-                'image' => 'nullable|image|max:2048',
+                'image' => 'nullable|mimes:jpg,jpeg,png|max:2048',
             ]
         );
 
@@ -178,6 +178,6 @@ class PostController extends Controller
 
         $post->delete();
         return redirect()->route('admin.posts.index');
-        
+
     }
 }
