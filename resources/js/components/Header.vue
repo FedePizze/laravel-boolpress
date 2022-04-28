@@ -10,7 +10,7 @@
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin">Accesso Admin</a>
+                    <a class="nav-link" href="/login">Accesso Admin</a>
                 </li>
             </ul>
         </nav>

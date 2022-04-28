@@ -3565,7 +3565,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "navbar-nav ms-auto" }, [
       _c("li", { staticClass: "nav-item" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "/admin" } }, [
+        _c("a", { staticClass: "nav-link", attrs: { href: "/login" } }, [
           _vm._v("Accesso Admin"),
         ]),
       ]),

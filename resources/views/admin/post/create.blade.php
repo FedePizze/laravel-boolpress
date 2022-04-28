@@ -35,8 +35,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="content">Descrizione</label>
-                        <textarea class="form-control" id="content" rows="10" name="content" value="{{old('content')}}"></textarea>
+                        <label for="description">Descrizione</label>
+                        <textarea class="form-control" id="description" rows="10" name="description" value="{{old('description')}}"></textarea>
                     </div>
 
                     @foreach ($tags as $tag)
